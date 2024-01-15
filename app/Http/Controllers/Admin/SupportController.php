@@ -11,8 +11,6 @@ class SupportController extends Controller
     public function index (Support $support) 
     {
         $supports = $support->all();
-        //dd($supports);
-
         return view('admin.supports.index', compact('supports'));
     }
 
@@ -23,6 +21,10 @@ class SupportController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        $data = $request->all();
+        $data['status'] = 'a';
+        
+        Support::create($data);
+        return redirect()->route('supports.index');
     }
 }
