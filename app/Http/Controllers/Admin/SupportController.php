@@ -16,11 +16,10 @@ class SupportController extends Controller
 
     public function show(string | int $id) 
     {
-        $support = Support::find($id);
-
+        if (!$support = Support::find($id)) {
+            return redirect()->back();
+        }
         return view('admin.supports.show', compact('support'));
-
-        // dd($support);
     }
 
     public function create()
