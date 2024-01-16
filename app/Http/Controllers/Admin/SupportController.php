@@ -14,6 +14,15 @@ class SupportController extends Controller
         return view('admin.supports.index', compact('supports'));
     }
 
+    public function show(string | int $id) 
+    {
+        $support = Support::find($id);
+
+        return view('admin.supports.show', compact('support'));
+
+        // dd($support);
+    }
+
     public function create()
     {
         return view('admin.supports.create');
