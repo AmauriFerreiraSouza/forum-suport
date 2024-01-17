@@ -17,7 +17,7 @@ class SupportController extends Controller
     public function show(string | int $id) 
     {
         if (!$support = Support::find($id)) {
-            return redirect()->back();
+            return back();
         }
         return view('admin.supports.show', compact('support'));
     }
@@ -34,5 +34,13 @@ class SupportController extends Controller
         
         Support::create($data);
         return redirect()->route('supports.index');
+    }
+
+    public function edit(Support $support, string | int $id)
+    {
+        if (!$support = $support->where('id', $id)->first()) {
+            return back();
+        }
+        return view('admin.supports.edit', compact('support'));
     }
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\SupportController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/supports/{id}/edit', [SupportController::class, 'edit'])->name('supports.edit');
 Route::get('/supports/create', [SupportController::class, 'create'])->name('supports.create');
 Route::get('/supports/{id}', [SupportController::class, 'show'])->name('supports.show');
 Route::post('/supports/store', [SupportController::class, 'store'])->name('supports.store');
