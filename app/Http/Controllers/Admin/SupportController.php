@@ -13,7 +13,7 @@ class SupportController extends Controller
         $supports = $support->all();
         return view('admin.supports.index', compact('supports'));
     }
-
+    
     public function show(string | int $id) 
     {
         if (!$support = Support::find($id)) {
@@ -43,4 +43,17 @@ class SupportController extends Controller
         }
         return view('admin.supports.edit', compact('support'));
     }
+
+    public function update(Request $request, Support $support, int $id) {
+
+        if (!$support = $support->find($id)) {
+            return back();
+        }
+
+        $support->update($request->all([
+            'subject', 'body'
+        ]));
+
+        return redirect()->route('supports.index');
+    } 
 }
